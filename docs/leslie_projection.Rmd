@@ -1,6 +1,8 @@
 ---
 title: "The Leslie Matrix - revisited"
 output: html_document
+editor_options: 
+  chunk_output_type: console
 ---
 
 ```{r setup, include=FALSE}
@@ -43,16 +45,16 @@ Add line-by-line comments wheres prompted in the code below, explaining what eac
 # ------ WHAT HAPPENS HERE? ------ #
 # ------ comment line-by-line ---- #
 
-# The line below...
+# The line below is a time vector of 8 years.
 time_yr <- seq(from = 0, to = 8, by = 1)
 
-# The line below...
+# The line below is an empty matrix to return the population for each life stage at each year.
 proj_year <- matrix(ncol = length(fish_year0), nrow = length(time_yr))
 
-# The line below...
+# The line below is to store the initial population in row 1.
 proj_year[1, ] <- fish_year0
 
-# The for loop below...
+# The for loop below fills out the matrix for all the populations following the initial population.
 for (i in 2:length(time_yr)) {
   proj_year[i,] <- fish_leslie %*% proj_year[i-1,]
 }
